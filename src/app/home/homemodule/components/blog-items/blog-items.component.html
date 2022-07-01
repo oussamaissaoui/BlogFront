@@ -1,0 +1,83 @@
+<app-navbar></app-navbar>
+
+<div class="card-group" style="margin: 5%;display: grid; align-items: center; justify-content: center;">
+    <div *ngFor="let item of dataFull" class="card" style="margin: 5%; ">
+      
+      <h5 (click)="openPopup2(item.id)" class="card-title">{{ item.created_at }} &nbsp; {{ item.title }} </h5>
+     
+      <div (click)="openPopup2(item.id)" class="card-body">
+        
+        <p class="card-text">{{ item.body }}</p>
+
+        <img class="card-img-down" src="..." style="float:right;" >
+      </div>
+      <div class="card-footer">
+        <small (click)="openPopup()" class="text-muted" >Author:{{ item.author.Name }}</small> <small style="float:right;">  comments:{{ item.comment.length }}</small>
+      </div>
+    </div>
+
+
+  
+    
+  </div>
+
+
+
+  
+  <!-- Modal -->
+  
+  <hr />
+  
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">List of all authors</h4>
+        </div>
+        <div class="modal-body">
+          <p *ngFor="let list of AuthorFull"> {{ list.authorName }} </p>
+    
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn " 
+                  (click)="closePopup()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="OneArticle"
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [ngStyle]="{'display':displayStyle2}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Article Details</h4>
+        </div>
+        <div class="modal-body">
+
+            <p>{{ OneArticle.created_at }}</p>
+            <p> {{ OneArticle.title }}</p>
+            <img class="card-img-down" src="..." style="float:right;" >
+          <p> {{ OneArticle.body }} </p>
+
+          <small class="text-muted" >Author:{{ OneArticle.author.Name }}</small> <small style="float:right;">  comments:{{ OneArticle.comment.length }}</small>
+    
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn " 
+                  (click)="closePopup2()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
